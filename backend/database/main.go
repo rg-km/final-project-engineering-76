@@ -14,6 +14,14 @@ func main() {
 
 	_, err = db.Exec(`
 
+	CREATE TABLE IF NOT EXISTS users (
+		id INTEGER PRIMARY KEY,
+		name varchar(255) NOT NULL,
+		email varchar(255) NOT NULL,
+		password varchar(255) NOT NULL
+	);
+
+
 	CREATE TABLE books (
 		id integer not null primary key AUTOINCREMENT,
 		book_title varchar(255) not null,
@@ -33,7 +41,13 @@ func main() {
 
 	INSERT INTO users(username, password, loggedin) VALUES
     ('vina', '1313', false),
-    ('kevin', '1212', false)`)
+    ('kevin', '1212', false)
+	
+	INSERT INTO users(username, password) VALUES
+	('reza', 'real2123', false),
+	('amel', 'bisayuk', false),`)
+
+
 
 	if err != nil {
 		panic(err)
