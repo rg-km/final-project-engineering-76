@@ -9,6 +9,7 @@ import (
 
 type controller struct {
 	userRepository  repository.UserRepo
+	registerRepository repository.RegisterRepo 
 	booksRepository repository.BooksRepo
 	mux             *http.ServeMux
 }
@@ -19,6 +20,7 @@ func NewController(userRepository repository.UserRepo) controller {
 		userRepository: userRepository, mux: mux,
 	}
 	mux.Handle("/api/login", api.POST(http.HandlerFunc(api.login)))
+	mux.Handle("/api/register", api.POST(http.HandlerFunc(api.register)))
 
 	return api
 

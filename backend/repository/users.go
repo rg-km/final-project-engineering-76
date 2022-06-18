@@ -9,6 +9,10 @@ type UserRepo struct {
 	db *sql.DB
 }
 
+type RegisterRepo struct {
+	db *sql.DB
+}
+
 func NewUserRepo(db *sql.DB) *UserRepo {
 	return &UserRepo{db: db}
 }
@@ -20,4 +24,12 @@ func (u *UserRepo) Login(username string, password string) (*string, error) {
 		return nil, errors.New("Login Failed")
 	}
 	return &user.Username, nil
+}
+
+func (u *RegisterRepo) Register(username string, password string) error {
+	_, err := u.db.Exec("INSERT INTO users (username, password) VALUES (?, ?)", username, password)
+	if err != nil {
+		return errors.New("Register Failed")
+	}
+	return nil
 }
