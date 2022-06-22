@@ -11,6 +11,8 @@ type controller struct {
 	booksRepository repository.BooksRepo
 	userRegister    repository.UserRegis
 	AddBooksList    repository.AddBooks
+	profilUserRepo repository.ProfilUserReposistory
+	profiladminRepo repository.ProfiladminReposistory
 	mux             *http.ServeMux
 }
 
@@ -24,6 +26,8 @@ func NewController(userRepository repository.UserRepo, userRegister repository.U
 	mux.Handle("/api/signup", api.POST(http.HandlerFunc(api.signup)))
 	mux.Handle("/api/bookList", api.GET(http.HandlerFunc(api.bookList))) //tambahkan tabel untuk link
 	mux.Handle("/api/addBooks", api.GET(http.HandlerFunc(api.AddBooks)))
+	mux.Handle("/api/user/profil", api.POST(api.AuthMiddleWare(http.HandlerFunc(api.addProfilUser))))
+	mux.Handle("/api/user/profil/edit", api.POST(api.AuthMiddleWare(http.HandlerFunc(api.editProfilUser))))
 
 	return api
 
