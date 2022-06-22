@@ -19,6 +19,10 @@ type ResponsesTrue struct {
 	Username string `json:"username"`
 	Token    string `json:"token"`
 }
+type RegisterResponse struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
 type AuthErrorResponse struct {
 	Error string `json:"error"`
 }

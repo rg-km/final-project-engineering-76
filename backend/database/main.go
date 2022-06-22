@@ -13,7 +13,6 @@ func main() {
 	}
 
 	_, err = db.Exec(`
-
 	CREATE TABLE books (
 		title varchar(255) not null primary key,
 		writer varchar(255) not null,
