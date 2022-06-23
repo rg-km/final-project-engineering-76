@@ -1,13 +1,108 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: montserrat, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input, button {
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(59, 110, 158);
+}
+
+form {
+  display: block;
+  position: relative;
+}
+
+form:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: 1;
+  background-color: #ffce00;
+}
+
+form .form-inner {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  padding: 20px;
+  z-index: 2;
+}
+
+form .form-inner h2 {
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: rgb(18, 77, 145);
+
+}
+
+form .form-inner .form-group {
+  display: block;
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+.form-inner .form-group input {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-end-start-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  transition: 0.4s;
+}
+
+.form-inner .form-group input:focus-within label {
+  color: #fe4880;
+}
+
+form .form-inner .form-group input:focus {
+  box-shadow:  0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+form .form-inner input[type="submit"] {
+  display: inline-block;
+  padding: 10px 15px 10px 15px;
+  border-radius: 8px;
+  background-color: #5bcc60;
+  background-size: 200% auto;
+  background-position: 0%;
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.4s;
+  
+}
+
+form .form-inner input[type="submit"]:hover {
+  background-position: 100% 0%;
+}
+
+.logout input[type="submit"] {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: rgb(102, 27, 27);
+  cursor: pointer;
 }
