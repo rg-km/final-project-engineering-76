@@ -4,12 +4,14 @@ type User struct {
 	ID       int64  `db:"id"`
 	Username string `db:"username"`
 	Password string `db:"password"`
-	Loggedin bool   `db:"loggedin"`
+	Role     string `db:"role"`
 	Token    string `db:"token"`
 }
 type Book struct {
 	//ID        int64  `db:"id"`
 	BookTitle string `db:"title"`
 	Writer    string `db:"writer"`
-	Publisher string `db:"publisher"`
+	Tahun     string `db:"tahun"`
+	Kategori  string `db:"kategori"`
+	Link      string `db:"link"`
 }

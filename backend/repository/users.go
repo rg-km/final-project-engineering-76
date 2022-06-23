@@ -35,9 +35,9 @@ func (u *UserRepo) Login(username string, password string) (*string, error) {
 	return &user.Username, nil
 }
 
-func (u *UserRegis) Register(username string, password string) (*string, error) {
+func (u *UserRegis) Register(username string, password string, role string) (*string, error) {
 	var user User
-	_, err := u.db.Exec("INSERT INTO users (username, password) VALUES (?, ?)", username, password)
+	_, err := u.db.Exec("INSERT INTO users (username, password,role) VALUES (?, ?)", username, password, role)
 	if err != nil {
 		fmt.Println(err, "error")
 		return nil, errors.New("register failed")

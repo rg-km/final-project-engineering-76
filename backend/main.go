@@ -16,10 +16,11 @@ func main() {
 		panic(err)
 	}
 	usersRepo := repository.NewUserRepo(db)
-	regisRepo := repository.NewUserRegis(db)
 	booksRepo := repository.NewBooksRepository(db)
+	regisRepo := repository.NewUserRegis(db)
 	addBooks := repository.AddNewBooks(db)
+	findWriter := repository.FindaBook(db)
 
-	mainApi := api.NewController(*usersRepo, *regisRepo, *booksRepo, *addBooks)
+	mainApi := api.NewController(*usersRepo, *booksRepo, *regisRepo, *addBooks, *findWriter)
 	mainApi.Start()
 }
