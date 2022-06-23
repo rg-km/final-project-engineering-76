@@ -73,7 +73,7 @@ func (p *ProfiladminReposistory) FetchProfilByUserID(userID int64) (Profiladmin,
 	return profil, nil
 }
 
-func (p *ProfiladminReposistory) InsertProfil(profil Profiladmin) error {
+func (p *ProfiladminReposistory) InsertProfiladmin(profil Profiladmin) error {
 	var sqlStmt string
 
 	sqlStmt = "INSERT INTO profil (name, email, address, nohp, instansi, user_id) VALUES (?, ?, ?, ?, ?, ?);"
@@ -87,7 +87,7 @@ func (p *ProfiladminReposistory) InsertProfil(profil Profiladmin) error {
 	return nil
 }
 
-func (p *ProfiladminReposistory) UpdateProfil(profil Profiladmin) error {
+func (p *ProfiladminReposistory) UpdateProfiladmin(profil Profiladmin) error {
 	var sqlStmt string
 
 	p.FecthProfil()
