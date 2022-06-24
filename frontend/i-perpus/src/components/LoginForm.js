@@ -3,11 +3,33 @@ import React, { useState } from "react";
 function LoginForm({ Login, error }) {
     const [details, setDetails] = useState({ name: '', password: '' })
     
-    const submit = e => {
+    const submit = async (e) => {
         e.preventDefault();
-            Login(details);
-        
+            Login(details);  
     }
+
+    // const resp = await fetch('http://localhost:2213/api/login', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     credentials: 'include', 
+    //     body: JSON.stringify({
+    //         name,
+    //         password,
+    //     })
+    // })
+
+    // let code = resp.status
+    // let content = await resp.json()
+
+    // const user = await fetch('http://localhost:2213/', {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     credentials: 'include',
+    // })
+
+    // const totalUser = await user.json()
+    // const allUser = totalUser.data
+
     return (
             <form onSubmit= {submit}>
                 <div className="form-inner">

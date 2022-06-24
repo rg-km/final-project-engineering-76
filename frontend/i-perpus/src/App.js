@@ -4,8 +4,8 @@ import './index.css';
 
 function App() {
   const user = {
-    name: 'John',
-    password: '123456'
+    name: 'Abdi',
+    password: '1010'
   }
 
   const [login, setLogin] = useState({ name: '', password: '' })
