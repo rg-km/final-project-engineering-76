@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+
 )
 
 type UserRepo struct {
@@ -24,6 +25,50 @@ type UserRegis struct {
 
 func NewUserRegis(db *sql.DB) *UserRegis {
 	return &UserRegis{db: db}
+}
+
+func (u *UserRepo) FecthUser() ([]User, error) {
+	var sqlStmt string
+	var users []User
+
+	sqlStmt = "SELECT id, name, username, email, password, role, created_at FROM users;"
+
+	rows, err := u.db.Query(sqlStmt)
+	if err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+
+	var user User
+	for rows.Next() {
+		err := rows.Scan(
+			&user.ID,
+			&user.Username,
+			&user.Password,
+			&user.Role,
+		)
+
+		if err != nil {
+			//panic(err)
+			return nil, errors.New("No Data")
+		}
+
+		users = append(users, user)
+	}
+
+	return users, err
+}
+
+func (u *UserRepo) QueryUser(username string) User {
+	var sqlStmt string
+	var user User
+
+	sqlStmt = `SELECT id, name, username, email, password, role FROM users WHERE username = ?;`
+
+	row := u.db.QueryRow(sqlStmt, username)
+	_ = row.Scan(&user.ID, &user.Username, &user.Password, &user.Role)
+
+	return user
 }
 
 func (u *UserRepo) Login(username string, password string) (*string, error) {

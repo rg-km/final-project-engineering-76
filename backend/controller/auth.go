@@ -34,6 +34,7 @@ var jwtKey = []byte("key")
 type Claims struct {
 	Username string
 	Role     string
+	ID       int64
 	jwt.StandardClaims
 }
 type Bookss struct {
