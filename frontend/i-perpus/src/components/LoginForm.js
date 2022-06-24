@@ -22,8 +22,10 @@ function LoginForm({ Login, error }) {
                         <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password" onChange={e => setDetails({ ...details, password: e.target.value })} value={details.password}/>
                 </div>
-                <input className="logsub" type="submit" value="LOGIN" />
-                <div> <br/><input type="submit" value="REGISTRASI" /></div>
+                <input className="login-btn" type="submit" value="LOGIN" />
+                <div>
+                    <br />
+                    <input className="regis-btn" type="submit" value="REGISTRASI" /></div>
             
                 </div>
             </form>

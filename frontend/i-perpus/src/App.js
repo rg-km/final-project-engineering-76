@@ -38,7 +38,7 @@ function App() {
       {(login.name != "") ? (
         <div className="welcome">
           <h2>Welcome, <span>{login.name}</span></h2>
-          <button onClick={Logout}>Logout</button>
+          <button className='logout' onClick={Logout}>Logout</button>
           </div>
       ) : (
           <LoginForm Login={Login} error={error} />
