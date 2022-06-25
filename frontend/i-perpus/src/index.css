@@ -5,12 +5,12 @@
   font-family: montserrat, sans-serif;
 }
 
-input, button {
+/* input, button {
   appearance: none;
   outline: none;
   border: none;
   background: none;
-}
+} */
 
 .App {
   display: flex;
@@ -95,14 +95,4 @@ form .form-inner input[type="submit"] {
 
 form .form-inner input[type="submit"]:hover {
   background-position: 100% 0%;
-}
-
-.logout input[type="submit"] {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 16px;
-  color: rgb(102, 27, 27);
-  cursor: pointer;
 }
