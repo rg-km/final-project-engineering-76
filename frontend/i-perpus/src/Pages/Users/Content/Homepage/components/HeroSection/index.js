@@ -28,8 +28,7 @@ const HeroSection = () => {
       <HeroContent>
         <HeroH1>iPerpus</HeroH1>
         <HeroP>
-          Pariatur duis dolore minim nulla exercitation culpa pariatur quis
-          minim eiusmod do dolore eu.
+          Website Perpustakaan berbasis Website yang dapat diakses di mana saja
         </HeroP>
         <HeroBtnWrapper>
           <Button
