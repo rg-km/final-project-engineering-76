@@ -145,3 +145,51 @@ func (u *Finder) FindBookBYKategori(kategori string) ([]Book, error) {
 	return sbuku, nil
 
 }
+
+func (u *BooksRepo) FetchByTitle(title string) ([]Book, error) {
+	rows, err := u.db.Query("SELECT *FROM books WHERE title LIKE '%" + title + "%'")
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var sbuku []Book
+
+	for rows.Next() {
+		var pbuku Book
+		err := rows.Scan(&pbuku.BookTitle, &pbuku.Writer, &pbuku.Tahun, &pbuku.Kategori, &pbuku.Link)
+		if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+		sbuku = append(sbuku, pbuku)
+	}
+	return sbuku, nil
+
+}
+
+func (u *UpdateBook) UpdateBookTitles(title string) ([]Book, error) {
+	//var edit Book
+	rows, err := u.db.Query("UPDATE books SET title =? WHERE title =?")
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var sbuku []Book
+
+	for rows.Next() {
+		var pbuku Book
+		err := rows.Scan(&pbuku.BookTitle, &pbuku.Writer, &pbuku.Tahun, &pbuku.Kategori, &pbuku.Link)
+		if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+		sbuku = append(sbuku, pbuku)
+	}
+	return sbuku, nil
+
+}

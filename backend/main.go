@@ -22,7 +22,8 @@ func main() {
 	findWriter := repository.FindaBook(db)
 	profilUserRepo := repository.NewProfilUserRepository(db)
 	profiladminRepo := repository.NewProfiladminRepository(db)
+	editUsername := repository.UpdateaBook(db)
 
-	mainApi := api.NewController(*usersRepo, *booksRepo, *regisRepo, *addBooks, *findWriter, *profilUserRepo, *profiladminRepo)
+	mainApi := api.NewController(*usersRepo, *booksRepo, *regisRepo, *addBooks, *findWriter, *profilUserRepo, *profiladminRepo, *editUsername)
 	mainApi.Start()
 }

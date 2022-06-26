@@ -46,8 +46,8 @@ type Bookss struct {
 	Link     string `json:"link"`
 }
 
-type ListBooksSuccessResponse struct {
-	book []Bookss `json :"books"`
+type BookListSuccess struct {
+	AllBooks []repository.Book `json: "books"`
 }
 
 func (api *controller) login(w http.ResponseWriter, req *http.Request) {
@@ -123,25 +123,24 @@ func (api *controller) signup(w http.ResponseWriter, r *http.Request) {
 		Value: tokenString,
 		Path:  "/",
 	})
-	json.NewEncoder(w).Encode(ResponsesTrue{Username: *res, Token: tokenString})
-
-	//json.NewEncoder(w).Encode(*res)
+	json.NewEncoder(w).Encode(ResponsesTrue{Username: user.Username, Token: tokenString})
 
 }
 
-type BookListSuccess struct {
-	AllBooks []repository.Book `json: "books"`
+type AddToBookList struct {
+	BookTitle string `json:"title`
 }
-
-// type AddToList struct {
-// 	writer string `json:"writer"`
-// }
+type AddToBookListsuccess struct {
+	BookTitle string `db:"title"`
+	Writer    string `db:"writer"`
+	Tahun     string `db:"tahun"`
+	Kategori  string `db:"kategori"`
+	Link      string `db:"link"`
+}
 
 func (api *controller) bookList(w http.ResponseWriter, r *http.Request) {
-
+	//	var requestList AddToBookList
 	buku, err := api.booksRepository.ReadList()
-	// var findBooks AddToList
-	// err := booksRepository.FindBook(findBooks.writer)
 
 	w.Header().Set("Content-Type", "application/json")
 	encoder := json.NewEncoder(w)
@@ -151,6 +150,19 @@ func (api *controller) bookList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(r)
+
+	// fetch, err := api.booksRepository.FetchByTitle(requestList.BookTitle)
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusNotFound)
+	// 	encoder.Encode(AuthErrorResponse{Error: err.Error()})
+	// 	return
+	// }
+
+	// w.WriteHeader(http.StatusOK)
+	// encoder.Encode(AddToBookListsuccess{
+	// 	BookTitle: fetch.BookTitle,
+
+	// })
 
 	defer func() {
 		if err != nil {
@@ -166,12 +178,15 @@ func (api *controller) bookList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (api *controller) findBooksWriter(w http.ResponseWriter, r *http.Request) {
-
-	writer := r.FormValue("writer")
-	buku, err := api.findingBook.FindBookBYWriter(writer)
-
 	w.Header().Set("Content-Type", "application/json")
 	encoder := json.NewEncoder(w)
+	writer := r.FormValue("writer")
+	buku, err := api.findingBook.FindBookBYWriter(writer)
+	if buku == nil {
+		encoder.Encode(BookListSuccess{AllBooks: []repository.Book{}})
+		return
+	}
+
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
 		encoder.Encode(AuthErrorResponse{Error: err.Error()})
@@ -193,12 +208,16 @@ func (api *controller) findBooksWriter(w http.ResponseWriter, r *http.Request) {
 	return
 }
 func (api *controller) findBooksTahun(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Content-Type", "application/json")
+	encoder := json.NewEncoder(w)
 	tahun := r.FormValue("tahun")
 	buku, err := api.findingBook.FindBookBYYear(tahun)
 
-	w.Header().Set("Content-Type", "application/json")
-	encoder := json.NewEncoder(w)
+	if buku == nil {
+		encoder.Encode(BookListSuccess{AllBooks: []repository.Book{}})
+		return
+	}
+
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
 		encoder.Encode(AuthErrorResponse{Error: err.Error()})
@@ -221,12 +240,16 @@ func (api *controller) findBooksTahun(w http.ResponseWriter, r *http.Request) {
 }
 
 func (api *controller) findBooksKategori(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Content-Type", "application/json")
+	encoder := json.NewEncoder(w)
 	kategori := r.FormValue("kategori")
 	buku, err := api.findingBook.FindBookBYKategori(kategori)
 
-	w.Header().Set("Content-Type", "application/json")
-	encoder := json.NewEncoder(w)
+	if buku == nil {
+		encoder.Encode(BookListSuccess{AllBooks: []repository.Book{}})
+		return
+	}
+
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
 		encoder.Encode(AuthErrorResponse{Error: err.Error()})
@@ -267,7 +290,7 @@ func (api *controller) addBooks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(*res)
+	json.NewEncoder(w).Encode(res)
 
 }
 
@@ -317,4 +340,30 @@ func (api *controller) dashboadAdmin(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(*res)
 
+}
+
+func (api *controller) UpdateBooksTitle(w http.ResponseWriter, r *http.Request) {
+	title := r.FormValue("title")
+	buku, err := api.editBookTitle.UpdateBookTitles(title)
+	w.Header().Set("Content-Type", "application/json")
+	encoder := json.NewEncoder(w)
+	if err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		encoder.Encode(AuthErrorResponse{Error: err.Error()})
+		return
+	}
+	json.NewEncoder(w).Encode(r)
+
+	defer func() {
+		if err != nil {
+			fmt.Println(err)
+			w.WriteHeader(http.StatusBadRequest)
+			encoder.Encode(AuthErrorResponse{Error: err.Error()})
+			return
+		}
+	}()
+	fmt.Println(buku)
+	encoder.Encode(BookListSuccess{AllBooks: buku})
+
+	return
 }
