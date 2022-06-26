@@ -6,7 +6,7 @@ export const homeObjOne = {
   topLine: "iPerpus",
   headLine: "Apa itu iPerpus ?",
   description:
-    "Cupidatat velit tempor irure veniam laboris occaecat aute. Lorem incididunt non labore aute sit ullamco laborum ut sunt. Elit ut incididunt qui proident enim adipisicing. Ea in eiusmod veniam laborum. Occaecat ex veniam esse anim in.",
+    "iPerpus adalah Website Pespustakaan Online yang bisa diakses dimana saja",
   buttonLabel: "Cari Buku",
   imgStart: false,
   img: require("../../images/svg-1.svg").default,
