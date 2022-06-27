@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Button } from "../ButtonElement";
-import Novel from "../../../../../novel.jpg";
+import Buku from "../../../../../buku.png";
 import {
   Column2,
   Img,
@@ -85,7 +85,7 @@ const InfoSection = ({
                       </Column1>
                       <Column2>
                         <ImgWrap>
-                          <Img src={Novel} alt={alt} />
+                          <Img src={Buku} alt={alt} />
                         </ImgWrap>
                       </Column2>
                     </InfoRow>
