@@ -1,0 +1,161 @@
+/*navbar*/
+.navbar {
+    background-color: grey;
+    color: white;
+}
+
+.nav-link {
+    color: white;
+    border-bottom: 0.1px solid white;
+}
+
+ul li .nav-link:hover{
+    color: white;
+}
+
+/*register*/
+.register {
+    font-size: 18px;
+    height: 100vh;
+    margin: 0px;
+    background-color: darkslategray;
+}
+
+.register-form{
+    background-color: yellow;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    height: 500px;
+}
+
+.btn-register{
+    background-color: darkslategray;
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+    border-color: darkslategray;
+}
+
+.btn-register:hover {
+    background-color: white;
+    color: darkslategray;
+}
+
+/*footer*/
+.footer{
+    margin-bottom: 0px;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    height: 50px;
+}
+
+/*User*/
+/*account*/
+.account {
+    background-color: skyblue;
+}
+
+/*Karya User*/
+.karya-user {
+    height: 100vw;
+    width: 100vw;
+    background-color: skyblue;
+}
+
+.karya-user .col-md-3 {
+    background-color: skyblue;
+}
+
+.side-list {
+    height: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.side-list .side-item{
+    width: 100%;
+    height: 50px;
+    border-bottom: 0.1px solid black;
+    list-style-type: none;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.side-list .side-item:hover{
+    cursor: pointer;
+}
+
+/*Admin*/
+/*sidebar-admin*/
+.sidebar-admin{
+    background-color: grey;
+    height: 100%;
+    width: 300px;
+    position: relative;
+}
+
+.sidebar-list {
+    height: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-list .sidebar-item{
+    width: 100%;
+    height: 50px;
+    border-bottom: 0.1px solid white;
+    list-style-type: none;
+    padding-left: 50px;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+}
+
+.sidebar-list .sidebar-item:hover{
+    cursor: pointer;
+    background-color: darkgray;
+}
+
+.sidebar-list .sidebar-item #active {
+    background-color: darkgray;
+}
+
+/*dashboard-admin*/
+.admin {
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard-title{
+    border-bottom: 0.1px solid rgb(233, 233, 233);
+}
+
+.dashboard-admin-side{
+    width: 300px;
+    height: 100vh;
+    color: white;
+    background-color: rgb(78, 78, 78);
+}
+
+.sidebar-wrapper {
+    
+    padding-top: 0.5rem;
+    flex: 1 0 auto;
+    width: 300px;
+}
+
+.dashboard-admin ul li{
+    margin-bottom: 5px;
+    background-color: rgb(168, 167, 167) ;
+}
+
+    
